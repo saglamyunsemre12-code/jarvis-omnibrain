@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-JARVIS NIM Engine — Powered by NVIDIA NIM Llama 3.2 11B
-Ultra-fast (max 8s timeout), non-blocking inference engine.
+JARVIS NIM Engine — Ultra-Fast (max 2.0s) Non-Blocking Inference
 """
 
 import json
@@ -11,15 +10,17 @@ import os
 
 NVIDIA_KEY = os.getenv("NVIDIA_API_KEY") or "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"
 NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
+PRIMARY_MODEL = "nvidia/nemotron-3.5-bolt-e4b"
 
-def query_nim(prompt, system_prompt=None, model="meta/llama-3.2-11b-vision-instruct", max_tokens=1024, temp=0.25, timeout=8):
+def query_nim(prompt, system_prompt=None, model=None, max_tokens=1024, temp=0.3, timeout=2.0):
+    target_model = model or PRIMARY_MODEL
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
     messages.append({"role": "user", "content": prompt})
 
     payload = {
-        "model": model,
+        "model": target_model,
         "messages": messages,
         "temperature": temp,
         "max_tokens": max_tokens
@@ -40,4 +41,4 @@ def query_nim(prompt, system_prompt=None, model="meta/llama-3.2-11b-vision-instr
         return f"[NIM Fallback: {str(e)}]"
 
 if __name__ == "__main__":
-    print(query_nim("Say Hello in 3 words"))
+    print(query_nim("Selam JARVIS."))

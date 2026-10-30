@@ -63,6 +63,16 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
             except (BrokenPipeError, ConnectionResetError):
                 pass
 
+        elif parsed.path == "/api/chat":
+            query_params = urllib.parse.parse_qs(parsed.query)
+            prompt = query_params.get("prompt", [""])[0].strip()
+            mode = query_params.get("mode", ["COUNCIL"])[0]
+            if not prompt:
+                self._send_json({"error": "Prompt cannot be empty"}, code=400)
+                return
+            result = process_prompt(prompt, mode=mode)
+            self._send_json(result)
+
         elif parsed.path == "/api/status":
             status_data = {
                 "system": get_system_metrics(),

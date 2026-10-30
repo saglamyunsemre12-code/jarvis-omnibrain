@@ -3,277 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JARVIS OMNI-BRAIN | Sınırsız Nöral Meta-Ağ</title>
+  <title>J.A.R.V.I.S. // Stark Industries Mark VII</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Share+Tech+Mono&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="hud-scanlines"></div>
-  <div class="hud-vignette"></div>
+<body class="stark-hud-theme">
 
-  <!-- Header -->
-  <header class="hud-header">
-    <div class="header-left">
-      <div class="hud-logo-icon">
-        <div class="arc-mini"></div>
+  <!-- Holographic Ambient Background Grid -->
+  <div class="holographic-grid"></div>
+  <div class="vignette-overlay"></div>
+
+  <!-- Top Tactical HUD Bar -->
+  <header class="hud-topbar">
+    <div class="topbar-left">
+      <div class="stark-logo-mark">
+        <span class="stark-brand">STARK INDUSTRIES</span>
+        <span class="stark-sub">TACTICAL HOLOGRAPHIC INTERFACE // MARK VII</span>
       </div>
-      <div>
-        <h1 class="hud-title">JARVIS <span>OMNI-BRAIN</span></h1>
-        <div class="hud-subtitle">NEXUS V2.0 // INFINITE NEURAL MATRIX</div>
+      <div class="hud-tag">SECURE QUANTUM LINK: ENCRYPTED</div>
+    </div>
+
+    <div class="topbar-center">
+      <div class="core-status-pill">
+        <span class="status-radar-dot"></span>
+        <span id="topSystemStatus">TÜM BİRİMLER ÇEVRİMİÇİ // SİSTEM NOMİNAL</span>
       </div>
     </div>
 
-    <div class="header-center">
-      <div class="mode-capsule">
-        <button class="mode-btn active" data-mode="COUNCIL" id="btnModeCouncil">
-          ⚡ SÜPER BEYİN (MOA)
-        </button>
-        <button class="mode-btn" data-mode="AUTO" id="btnModeAuto">
-          🤖 AKILLI YÖNLENDİRİCİ
-        </button>
-        <button class="mode-btn" data-mode="STUDIO" id="btnModeStudio">
-          🎬 MULTI-STUDIO ARAÇLARI
-        </button>
-        <button class="mode-btn" data-mode="SYSTEM" id="btnModeSystem">
-          🖥️ MACOS SİSTEM
-        </button>
-      </div>
-    </div>
-
-    <div class="header-right">
-      <div class="telemetry-pill">
-        <span class="telemetry-dot"></span>
-        <span id="telemetryStatus">9 DÜĞÜM BAĞLI // ÇEVRİMİÇİ</span>
-      </div>
-      <div class="audio-toggle-btn" id="btnAudioToggle" title="Sesli Yanıtı Aç/Kapat">
-        🔊
-      </div>
+    <div class="topbar-right">
+      <div class="hud-clock" id="hudClock">MALIBU LAB: 04:20:00 UTC</div>
+      <button class="hud-audio-btn" id="btnAudioToggle" title="Sesli Yanıtı Aç/Kapat">
+        <span class="audio-wave-icon">🔊</span>
+        <span class="audio-label">JARVIS SESİ: AKTİF</span>
+      </button>
     </div>
   </header>
 
-  <!-- Main Grid Layout -->
-  <main class="hud-main">
-    <!-- Left Column: Neural Network Matrix -->
-    <aside class="hud-sidebar-left">
-      <div class="panel-header">
-        <span class="panel-tag">// BAĞLI TÜM AI DÜĞÜMLERİ</span>
-        <h3>SINIRSIZ NÖRAL AĞ</h3>
+  <!-- 4 Tactical HUD Corner Telemetry Modules -->
+  <aside class="hud-corner corner-top-left">
+    <div class="corner-bracket"></div>
+    <div class="module-title">◈ SİSTEM TELEMETRİSİ</div>
+    <div class="telemetry-row">
+      <span class="lbl">İŞLEMCİ MİMARİSİ</span>
+      <span class="val cyan" id="cpuMetric">Apple Silicon M</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="lbl">NÖRAL MATRİS</span>
+      <span class="val cyan">16 CORE [AKTİF]</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="lbl">BELLEK YÜKÜ</span>
+      <span class="val gold" id="ramMetric">18.4 MB / %0.1</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="lbl">AĞ GECİKMESİ</span>
+      <span class="val cyan">0.02s [SIFIR GECİKME]</span>
+    </div>
+  </aside>
+
+  <aside class="hud-corner corner-top-right">
+    <div class="corner-bracket"></div>
+    <div class="module-title">⚡ ARC REACTOR ÇEKİRDEĞİ</div>
+    <div class="telemetry-row">
+      <span class="lbl">ÇIKIŞ KAPASİTESİ</span>
+      <span class="val cyan">%100.0 [STABİL]</span>
+    </div>
+    <div class="power-bar-wrap">
+      <div class="power-bar-fill"></div>
+    </div>
+    <div class="telemetry-row">
+      <span class="lbl">ENERJİ AKISI</span>
+      <span class="val cyan">3.2 GJ/s</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="lbl">ÇEKİRDEK ISISI</span>
+      <span class="val cyan">37.2°C [OPTİMAL]</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="lbl">KOHERANS ORANI</span>
+      <span class="val gold">%99.98</span>
+    </div>
+  </aside>
+
+  <aside class="hud-corner corner-bottom-left">
+    <div class="corner-bracket"></div>
+    <div class="module-title">🌐 ÇOKLU YAPAY ZEKÂ AĞI (COUNCIL)</div>
+    <div class="ai-node-list">
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">CODEX CLI</span><span class="node-role">KOD & MİMARİ</span></div>
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">CLAUDE 3.5</span><span class="node-role">STRATEJİ & METİN</span></div>
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">GEMINI 2.0</span><span class="node-role">ARAŞTIRMA & TEYİT</span></div>
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">NVIDIA NIM</span><span class="node-role">NEMOTRON 3.5 ÇIKARIM</span></div>
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">HIGGSFIELD</span><span class="node-role">9:16 SİNEMA STÜDYOSU</span></div>
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">ELEVENLABS</span><span class="node-role">VOKAL & SSML DİKSİYON</span></div>
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">REMOTION</span><span class="node-role">REACT VİDEO BİLEŞENİ</span></div>
+      <div class="ai-node"><span class="dot live"></span><span class="node-name">GITHUB</span><span class="node-role">@saglamyunsemre12-code</span></div>
+    </div>
+  </aside>
+
+  <aside class="hud-corner corner-bottom-right">
+    <div class="corner-bracket"></div>
+    <div class="module-title">🎙️ AKUSTİK SPEKTRUM VE SES</div>
+    <canvas id="oscCanvas" width="180" height="42"></canvas>
+    <div class="telemetry-row">
+      <span class="lbl">SESLENDİRME</span>
+      <span class="val cyan">J.A.R.V.I.S. (TR & EN)</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="lbl">DİJİTAL SENTEZ</span>
+      <span class="val cyan">Web Speech API</span>
+    </div>
+  </aside>
+
+  <!-- Central Main Hologram Stage -->
+  <main class="hud-stage">
+    <!-- HTML5 Dynamic 3D Wireframe & Waveform Canvas -->
+    <div class="canvas-wrapper">
+      <canvas id="jarvisCanvas" width="760" height="520"></canvas>
+      <div class="hologram-label-container">
+        <div class="hologram-subtitle" id="coreStatusText">J.A.R.V.I.S. MARK VII // AT YOUR SERVICE, SIR</div>
+        <div class="hologram-pulse-line"></div>
       </div>
+    </div>
 
-      <div class="network-nodes-list" id="networkNodesList">
-        <!-- Node: NVIDIA NIM -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">NVIDIA NIM <span>NVDA</span></div>
-            <div class="node-detail">Llama 3.2 11B & Nemotron 70B</div>
-          </div>
+    <!-- Floating Holographic Response Window (Overlay) -->
+    <div class="hud-response-card hidden" id="responseHud">
+      <div class="card-corner corner-tl"></div>
+      <div class="card-corner corner-tr"></div>
+      <div class="card-corner corner-bl"></div>
+      <div class="card-corner corner-br"></div>
+
+      <div class="card-header">
+        <div class="card-header-left">
+          <span class="header-icon">◈</span>
+          <span class="header-title">STARK TELEMETRY // MULTI-AI CONSENSUS</span>
+          <span class="exec-time" id="execTimeBadge">0.02s</span>
         </div>
 
-        <!-- Node: Codex -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">OpenAI Codex <span>18 SKILL</span></div>
-            <div class="node-detail">yt-script, remotion, kod mimarisi</div>
-          </div>
+        <!-- Specialist View Selector Tabs -->
+        <div class="specialist-tabs" id="specialistTabs">
+          <button class="spec-tab active" data-tab="master">👑 BİLEŞİK BEYİN</button>
+          <button class="spec-tab" data-tab="codex">⚡ CODEX</button>
+          <button class="spec-tab" data-tab="claude">🧠 CLAUDE</button>
+          <button class="spec-tab" data-tab="gemini">🔮 GEMINI</button>
+          <button class="spec-tab" data-tab="higgsfield">🎬 HIGGSFIELD</button>
+          <button class="spec-tab" data-tab="elevenlabs">🎙️ ELEVENLABS</button>
         </div>
 
-        <!-- Node: Claude -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">Anthropic Claude <span>SONNET</span></div>
-            <div class="node-detail">Stratejik metin & OmniRoute</div>
-          </div>
-        </div>
-
-        <!-- Node: Gemini -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">Google Gemini <span>RESEARCH</span></div>
-            <div class="node-detail">Multimodal & Google grounding</div>
-          </div>
-        </div>
-
-        <!-- Node: GitHub -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">GitHub Hub <span>@saglamyunsemre12</span></div>
-            <div class="node-detail">Doğrudan CLI / Repo Yönetimi</div>
-          </div>
-        </div>
-
-        <!-- Node: Higgsfield -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">Higgsfield AI <span>CINEMA</span></div>
-            <div class="node-detail">Sinematik video & 9:16 Reels</div>
-          </div>
-        </div>
-
-        <!-- Node: ElevenLabs -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">ElevenLabs <span>VOICE</span></div>
-            <div class="node-detail">Multilingual v2 & Adam/Rachel</div>
-          </div>
-        </div>
-
-        <!-- Node: n8n -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">n8n Cloud <span>AUTOMATION</span></div>
-            <div class="node-detail">Haftalık içerik boru hattı</div>
-          </div>
-        </div>
-
-        <!-- Node: Google Sheets -->
-        <div class="node-item online">
-          <div class="node-dot"></div>
-          <div class="node-info">
-            <div class="node-name">Google Sheets <span>CALENDAR</span></div>
-            <div class="node-detail">İçerik Takvimi canlı veri</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Live Hardware Status -->
-      <div class="system-diagnostics">
-        <div class="diag-header">// MACOS DONANIM VE GÜÇ</div>
-        <div class="diag-row">
-          <span>Güç Durumu:</span>
-          <span class="diag-val" id="diagBattery">Yükleniyor...</span>
-        </div>
-        <div class="diag-row">
-          <span>Toplam Beceri/Plugin:</span>
-          <span class="diag-val" style="color: #00ffaa;" id="diagSkillsCount">29 Aktif Beceri</span>
-        </div>
-        <div class="diag-row">
-          <span>Boşta CPU Yükü:</span>
-          <span class="diag-val" style="color: #00f0ff;">%0.0 (Durgun)</span>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Center Column: Core Display & Synthesis Output -->
-    <section class="hud-center">
-      <!-- Arc Reactor Animation Container -->
-      <div class="reactor-wrapper" id="reactorWrapper">
-        <div class="arc-ring ring-outer"></div>
-        <div class="arc-ring ring-middle"></div>
-        <div class="arc-ring ring-inner"></div>
-        <div class="arc-core">
-          <div class="core-glow"></div>
-          <span class="core-icon">⚡</span>
-        </div>
-        <div class="reactor-label" id="reactorLabel">JARVIS SINIRSIZ NÖRAL AĞ AKTİF</div>
-      </div>
-
-      <!-- Quick Action Commands -->
-      <div class="quick-commands">
-        <button class="cmd-pill" data-prompt="Higgsfield için sinematik lüks video istemi ve kamera açısı üret.">
-          🎬 Higgsfield Video Prompt
-        </button>
-        <button class="cmd-pill" data-prompt="ElevenLabs için yüksek enerjili viral seslendirme metni ve SSML zamanlaması hazırla.">
-          🎙️ ElevenLabs Ses Metni
-        </button>
-        <button class="cmd-pill" data-prompt="Remotion için React tabanlı kayan başlık ve yazı animasyonu kodu yaz.">
-          ⚛️ Remotion React Kodu
-        </button>
-        <button class="cmd-pill" data-prompt="GitHub depolarımı ve hesap durumumu kontrol et.">
-          🐙 GitHub Durumu
-        </button>
-        <button class="cmd-pill" data-prompt="n8n iş akışı ve Google Sheets içerik takvimini bağla.">
-          ⚡ n8n & Sheets Otomasyonu
-        </button>
-      </div>
-
-      <!-- Output Screen -->
-      <div class="output-screen" id="outputScreen">
-        <div class="screen-watermark">JARVIS INTELLIGENCE</div>
-        <div class="response-container" id="responseContainer">
-          <div class="empty-state">
-            <p>Merhaba Yunus Emre. JARVIS Sınırsız Nöral Matris aktif.</p>
-            <p class="empty-hint">OpenAI Codex, Claude, Gemini, NVIDIA NIM, GitHub, Higgsfield, ElevenLabs ve n8n tek bir beyin olarak emrinde.</p>
-          </div>
+        <div class="card-header-right">
+          <button class="card-tool-btn" id="btnSpeakText" title="Sesli Oku">🔊 Oku</button>
+          <button class="card-tool-btn" id="btnCopyText" title="Metni Kopyala">📋 Kopyala</button>
+          <button class="card-close-btn" id="btnCloseHud" title="Pencereyi Kapat">✕</button>
         </div>
       </div>
 
-      <!-- Input Bar -->
-      <div class="input-console">
-        <div class="input-wrapper">
-          <input type="text" id="promptInput" placeholder="Tek bir emir ver (Örn: 'Viral video için Higgsfield promptu, ElevenLabs sesi ve Remotion kodunu birlikte üret')..." autocomplete="off">
-          <button class="mic-btn" id="btnMic" title="Sesle Konuş">
-            🎙️
-          </button>
-          <button class="send-btn" id="btnSend">
-            <span>ÇALIŞTIR</span>
-            <span class="btn-arrow">→</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Right Column: Multi-Studio Actions & Specialist Breakdown -->
-    <aside class="hud-sidebar-right">
-      <div class="panel-header">
-        <span class="panel-tag">// ENTEGRE STÜDYO VE ANALİZ</span>
-        <h3>ARAÇ KONTROL PANELİ</h3>
+      <div class="card-body" id="hudContent">
+        <!-- Rendered Markdown Content Appears Here -->
       </div>
 
-      <!-- Multi-Studio Quick Triggers -->
-      <div class="studio-buttons-grid">
-        <button class="studio-trigger-btn" id="btnTriggerGitHub">
-          <span>🐙 GitHub Repoları</span>
-        </button>
-        <button class="studio-trigger-btn" id="btnTriggerHiggsfield">
-          <span>🎬 Higgsfield Motoru</span>
-        </button>
-        <button class="studio-trigger-btn" id="btnTriggerElevenLabs">
-          <span>🎙️ ElevenLabs Sesi</span>
-        </button>
-        <button class="studio-trigger-btn" id="btnTriggerRemotion">
-          <span>⚛️ Remotion Kurgusu</span>
-        </button>
-        <button class="studio-trigger-btn" id="btnTriggerForge" style="border-color: rgba(0, 255, 170, 0.4);">
-          <span>🛠️ Hermes Tool Forge</span>
-        </button>
-        <button class="studio-trigger-btn" id="btnTriggerViral" style="border-color: rgba(255, 183, 0, 0.4);">
-          <span>📈 Viral Skorlayıcı</span>
-        </button>
+      <div class="card-footer">
+        <span class="footer-sec">STARK QUANTUM PROTOCOL // VERIFIED SENSORY OUTPUT</span>
+        <span class="footer-sys">STATUS: NOMINAL</span>
       </div>
-
-      <div class="council-breakdown-box" id="councilBreakdown">
-        <div class="breakdown-placeholder">
-          Çalıştırılan her görevde; Codex, Claude, Gemini ve NVIDIA motorlarının bağımsız çözümlemeleri ile Higgsfield, ElevenLabs, GitHub eylemleri burada gerçek zamanlı raporlanır.
-        </div>
-      </div>
-
-      <div class="telemetry-box">
-        <div class="diag-header">// NÖRAL METRİKLER</div>
-        <div class="metric-item">
-          <span class="metric-label">Son Yanıt Süresi:</span>
-          <span class="metric-value" id="valExecTime">-</span>
-        </div>
-        <div class="metric-item">
-          <span class="metric-label">Konsensüs Durumu:</span>
-          <span class="metric-value" id="valConsensus">9 DÜĞÜM SENKRON</span>
-        </div>
-        <div class="metric-item">
-          <span class="metric-label">Bağlı Modeller:</span>
-          <span class="metric-value" style="color: #00ffaa;">NIM + Codex + Claude + Gemini</span>
-        </div>
-      </div>
-    </aside>
+    </div>
   </main>
+
+  <!-- Bottom Command Console & Tactical Chips -->
+  <footer class="hud-command-area">
+    <!-- Action Chips -->
+    <div class="command-chips">
+      <button class="hud-chip" data-prompt="Higgsfield için sinematik lüks video istemi ve kamera açısı üret.">
+        <span class="chip-icon">🎬</span> 9:16 Video Prompt (Higgsfield)
+      </button>
+      <button class="hud-chip" data-prompt="ElevenLabs için viral seslendirme metni ve SSML zamanlaması hazırla.">
+        <span class="chip-icon">🎙️</span> Viral Seslendirme & SSML
+      </button>
+      <button class="hud-chip" data-prompt="GTA VI tarzı gerçek hayat aksiyonlu viral video kurgusu ve senaryosu yaz.">
+        <span class="chip-icon">🚗</span> GTA VI Viral Video Kurgusu
+      </button>
+      <button class="hud-chip" data-prompt="Remotion için React tabanlı kayan başlık animasyonu kodu yaz.">
+        <span class="chip-icon">⚛️</span> React Video Bileşeni (Remotion)
+      </button>
+      <button class="hud-chip" data-prompt="GitHub depolarımı ve hesap durumumu kontrol et.">
+        <span class="chip-icon">🐙</span> GitHub Durumu (@saglamyunsemre12-code)
+      </button>
+      <button class="hud-chip" data-prompt="MacBook şarj ve sistem pil durumunu göster.">
+        <span class="chip-icon">⚡</span> Sistem & Donanım Gücü
+      </button>
+    </div>
+
+    <!-- Floating Glass Hologram Command Input -->
+    <div class="command-pill-wrap">
+      <div class="command-pill">
+        <button class="mic-btn" id="btnMic" title="Sesli Komut Ver (Konuşun)">
+          <span class="mic-icon">🎙️</span>
+          <span class="mic-pulse"></span>
+        </button>
+
+        <input 
+          type="text" 
+          id="promptInput" 
+          placeholder="J.A.R.V.I.S.'a bir talimat verin veya seslenin (örn. 'Higgsfield için video promptu üret', 'merhaba')..." 
+          autocomplete="off" 
+          spellcheck="false"
+        >
+
+        <button class="send-btn" id="btnSend" title="Komutu İlet">
+          <span class="send-arrow">❯</span>
+        </button>
+      </div>
+    </div>
+  </footer>
 
   <script src="app.js"></script>
 </body>
