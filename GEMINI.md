@@ -1,0 +1,2 @@
+# Jarvis ortak geliştirme bağlamı
+Bu proje için güncel kanıt, son değişiklik ve açık işleri `/Users/emre/Documents/Codex/2026-10-30/ke/outputs/ortak-ai-hafizasi.md` dosyasından oku. Ayrıntılı araştırmaları sadece ilgili görevde aç. Mevcut değişiklikleri koru; Codex'in `engines/chat_engine.py` tabanlı gerçek sohbet yolunu eski demo yanıtlarıyla değiştirme. Kullanıcı halen istediği işin çalışmadığını bildiriyor; tek başarılı model çağrısını tam otomasyon başarısı sayma.

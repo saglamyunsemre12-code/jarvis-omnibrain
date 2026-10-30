@@ -22,13 +22,13 @@
         <span class="stark-brand">STARK INDUSTRIES</span>
         <span class="stark-sub">TACTICAL HOLOGRAPHIC INTERFACE // MARK VII</span>
       </div>
-      <div class="hud-tag">SECURE QUANTUM LINK: ENCRYPTED</div>
+      <div class="hud-tag">YEREL JARVIS ARAYÜZÜ</div>
     </div>
 
     <div class="topbar-center">
       <div class="core-status-pill">
         <span class="status-radar-dot"></span>
-        <span id="topSystemStatus">TÜM BİRİMLER ÇEVRİMİÇİ // SİSTEM NOMİNAL</span>
+        <span id="topSystemStatus">SOHBET: NVIDIA API // BAĞLANTI İSTEKTE KONTROL EDİLİR</span>
       </div>
     </div>
 
@@ -47,7 +47,7 @@
   <!-- 4 Tactical HUD Corner Telemetry Modules -->
   <aside class="hud-corner corner-top-left">
     <div class="corner-bracket"></div>
-    <div class="module-title">◈ SİSTEM TELEMETRİSİ</div>
+    <div class="module-title">◈ DEKORATİF PANEL — ÖLÇÜM DEĞİL</div>
     <div class="telemetry-row">
       <span class="lbl">İŞLEMCİ MİMARİSİ</span>
       <span class="val cyan" id="cpuMetric">Apple Silicon M</span>
@@ -68,7 +68,7 @@
 
   <aside class="hud-corner corner-top-right">
     <div class="corner-bracket"></div>
-    <div class="module-title">⚡ ARC REACTOR ÇEKİRDEĞİ</div>
+    <div class="module-title">⚡ REAKTÖR ANİMASYONU — DEMO</div>
     <div class="telemetry-row">
       <span class="lbl">ÇIKIŞ KAPASİTESİ</span>
       <span class="val cyan">%100.0 [STABİL]</span>
@@ -92,7 +92,7 @@
 
   <aside class="hud-corner corner-bottom-left">
     <div class="corner-bracket"></div>
-    <div class="module-title">🤖 OTONOM AJAN SÜRÜSÜ (RUFLO SWARM)</div>
+    <div class="module-title">🤖 PLANLANAN MODÜLLER — BAĞLI DEĞİL</div>
     <div class="ai-node-list">
       <div class="ai-node"><span class="dot live"></span><span class="node-name">J.A.R.V.I.S.</span><span class="node-role">CHIEF OF STAFF & SES</span></div>
       <div class="ai-node"><span class="dot live"></span><span class="node-name">TOM (DEV)</span><span class="node-role">SENIOR GELİŞTİRİCİ</span></div>
@@ -140,13 +140,14 @@
       <div class="card-header">
         <div class="card-header-left">
           <span class="header-icon">◈</span>
-          <span class="header-title">STARK TELEMETRY // MULTI-AI CONSENSUS</span>
+          <span class="header-title">JARVIS // GERÇEK MODEL YANITI</span>
           <span class="exec-time" id="execTimeBadge">0.02s</span>
         </div>
 
         <!-- Specialist View Selector Tabs -->
         <div class="specialist-tabs" id="specialistTabs">
-          <button class="spec-tab active" data-tab="master">👑 BİLEŞİK BEYİN</button>
+          <button class="spec-tab active" data-tab="master">YANIT</button>
+          <button class="spec-tab" data-tab="nim">KAYNAK / MODEL</button>
           <button class="spec-tab" data-tab="tom">💻 TOM (DEV)</button>
           <button class="spec-tab" data-tab="sarah">🎬 SARAH (VİDEO)</button>
           <button class="spec-tab" data-tab="leo">📩 LEO (DESTEK)</button>
@@ -166,8 +167,8 @@
       </div>
 
       <div class="card-footer">
-        <span class="footer-sec">STARK QUANTUM PROTOCOL // VERIFIED SENSORY OUTPUT</span>
-        <span class="footer-sys">STATUS: NOMINAL</span>
+        <span class="footer-sec">MODEL YANITI // OTOMATİK YAYINLAMA YOK</span>
+        <span class="footer-sys">JARVIS</span>
       </div>
     </div>
   </main>
@@ -176,20 +177,20 @@
   <footer class="hud-command-area">
     <!-- Action Chips -->
     <div class="command-chips">
-      <button class="hud-chip chip-highlight" data-prompt="Jarvis, son 7 günlük operasyonel durum brifingi ver.">
-        <span class="chip-icon">🛡️</span> HAFTALIK İCRA BRİFİNGİ ($30k MRR)
+      <button class="hud-chip chip-highlight" data-prompt="Bağlantı durumu">
+        <span class="chip-icon">🛡️</span> BAĞLANTI DURUMU
       </button>
-      <button class="hud-chip" data-prompt="Günde 3 video planını hazırla ve Buffer kuyruğuna ekle.">
-        <span class="chip-icon">🎬</span> Günde 3 Video (Agent Sarah & Buffer)
+      <button class="hud-chip" data-prompt="AI öğrenmeye başlayanlar için 30 saniyelik bir Instagram Reels senaryosu yaz. Kanca, konuşma metni ve paylaşım açıklaması olsun.">
+        <span class="chip-icon">🎬</span> REELS SENARYOSU YAZ
       </button>
-      <button class="hud-chip" data-prompt="Geliştirici ajan Tom, webhook gecikmesini ve GitHub issuesini çözsün.">
-        <span class="chip-icon">💻</span> Geliştirici Ajan Tom (Full-Stack Dev)
+      <button class="hud-chip" data-prompt="Python ile bir klasördeki dosya adlarını listeleyen kısa bir kod yaz ve nasıl çalıştıracağımı açıkla.">
+        <span class="chip-icon">💻</span> KOD TASLAĞI YAZ
       </button>
-      <button class="hud-chip" data-prompt="Müşteri destek maillerini kontrol et, SSSleri otomatik çöz.">
-        <span class="chip-icon">📩</span> Müşteri Destek Ajanı Leo (16 Mail)
+      <button class="hud-chip" data-prompt="Teslim tarihi soran bir müşteriye kısa, profesyonel e-posta taslağı yaz. Bilinmeyen tarih için yer tutucu kullan.">
+        <span class="chip-icon">📩</span> E-POSTA TASLAĞI
       </button>
-      <button class="hud-chip" data-prompt="Gelir, MRR ve reklam harcaması ROAS analizini çıkar.">
-        <span class="chip-icon">📈</span> Finans & ROAS Raporu (Agent Alex)
+      <button class="hud-chip" data-prompt="Bu hafta AI öğrenmek için günde 30 dakikalık uygulanabilir çalışma planı yaz.">
+        <span class="chip-icon">📈</span> ÇALIŞMA PLANI
       </button>
       <button class="hud-chip" data-prompt="Hafızanda neler var? Beni ve projelerimi ne kadar tanıyorsun?">
         <span class="chip-icon">🧠</span> Kalıcı Hafıza (MemGPT)

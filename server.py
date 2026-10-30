@@ -12,7 +12,8 @@ import sys
 import urllib.parse
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from jarvis_core import process_prompt, process_prompt_stream, get_system_metrics, get_safari_tabs, set_volume, open_url_in_safari
+from engines.chat_engine import process_prompt, process_prompt_stream
+from engines.system_engine import get_system_metrics, get_safari_tabs, set_volume, open_url_in_safari
 from engines.n8n_engine import get_n8n_status
 from engines.voice_engine import speak_async
 from engines.github_engine import get_github_status, list_user_repos, create_repo
@@ -74,25 +75,15 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
             self._send_json(result)
 
         elif parsed.path == "/api/swarm/rundown":
-            from engines.subagents_swarm import swarm
-            self._send_json(swarm.generate_executive_rundown())
+            self._send_json({"status": "NOT_CONNECTED", "master_response":
+                            "Canlı işletme verileri bağlı değil; gelir, yayın ve destek sonucu gösterilemiyor."})
 
         elif parsed.path == "/api/status":
-            status_data = {
-                "system": get_system_metrics(),
-                "n8n": get_n8n_status(),
-                "github": get_github_status(),
-                "models": {
-                    "codex": "Active (Local CLI / 18 Custom Video Skills)",
-                    "claude": "Active (OmniRoute / Strategic Copy)",
-                    "gemini": "Active (Multimodal & Fact-Checking)",
-                    "nim": "Active (NVIDIA Llama 3.2 11B & Nemotron 70B)",
-                    "higgsfield": "Active (Cinematic Studio / Tab 5)",
-                    "elevenlabs": "Active (Voice Studio / Tab 8)"
-                },
-                "status": "ONLINE",
-                "port": PORT
-            }
+            status_data = {"status": "ONLINE", "port": PORT,
+                           "chat_provider": "NVIDIA",
+                           "provider_health": "checked_per_request",
+                           "multi_model_consensus": False,
+                           "automatic_publishing": False}
             self._send_json(status_data)
 
         elif parsed.path == "/api/memory":
@@ -132,8 +123,11 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
                 self._send_json({"error": "Prompt cannot be empty"}, code=400)
                 return
 
-            result = process_prompt(prompt, mode=mode)
-            self._send_json(result)
+            try:
+                result = process_prompt(prompt, mode=mode)
+                self._send_json(result, code=502 if result.get("status") == "ERROR" else 200)
+            except Exception:
+                self._send_json({"status": "ERROR", "master_response": "Sunucu isteği tamamlayamadı."}, code=500)
 
         elif parsed.path == "/api/memory/clear":
             from memory.jarvis_memory import memory

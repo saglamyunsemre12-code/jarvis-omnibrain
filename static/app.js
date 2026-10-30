@@ -6,6 +6,7 @@ let isAudioEnabled = true;
 let currentSpecialistsData = {};
 let currentMasterResponse = "";
 let currentSpeakingUtterance = null;
+let requestInFlight = false;
 
 const STATE_IDLE = "IDLE";
 const STATE_PROCESSING = "PROCESSING";
@@ -176,7 +177,7 @@ function renderTabContent(tabKey) {
   } else {
     hudContent.innerHTML = `
       <div style="padding: 20px; text-align: center; color: var(--text-dim); font-family: var(--font-mono);">
-        [${tabKey.toUpperCase()} bu görev için doğrudan çıktı üretmedi veya master konsensüse dahil edildi.]
+        [${tabKey.toUpperCase()} bu yanıta katılmadı.]
       </div>
     `;
   }
@@ -238,9 +239,13 @@ function speakText(rawText) {
 // Send Command to Server
 async function handleSend() {
   const prompt = promptInput.value.trim();
-  if (!prompt) return;
+  if (!prompt || requestInFlight) return;
+  requestInFlight = true;
+  btnSend.disabled = true;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 50000);
 
-  audioSynth.playSendChime();
+  try { audioSynth.playSendChime(); } catch (_) { /* Audio cannot block chat. */ }
   promptInput.value = "";
   
   jarvisState = STATE_PROCESSING;
@@ -267,16 +272,18 @@ async function handleSend() {
   try {
     const res = await fetch("/api/chat", {
       method: "POST",
+      signal: controller.signal,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt, mode: "COUNCIL" })
     });
 
-    if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
     const data = await res.json();
+    if (!res.ok || data.status === "ERROR") throw new Error(data.master_response || data.error || `HTTP ${res.status}`);
+    if (!data.master_response) throw new Error("Sunucudan boş yanıt geldi.");
 
-    audioSynth.playReceiveChime();
-    execTimeBadge.innerText = `${data.execution_time || 0.05}s`;
-    currentMasterResponse = data.master_response || data.result || "İşlem tamamlandı.";
+    try { audioSynth.playReceiveChime(); } catch (_) {}
+    execTimeBadge.innerText = `${data.execution_time ?? 0}s · ${data.model || 'Yerel bilgi'}`;
+    currentMasterResponse = data.master_response;
     currentSpecialistsData = data.specialists || {};
 
     // Reset tabs
@@ -284,24 +291,30 @@ async function handleSend() {
     document.querySelector(".spec-tab[data-tab='master']").classList.add("active");
     renderTabContent("master");
 
-    coreStatusText.innerText = "GÖREV TAMAMLANDI // KONSENSÜS SAĞLANDI";
+    coreStatusText.innerText = data.provider ? "YANIT HAZIR // " + data.provider : "YEREL BİLGİ";
     coreStatusText.style.color = "var(--cyan-primary)";
 
     // Speak response
-    speakText(data.spoken_text || currentMasterResponse);
+    try { speakText(data.spoken_text || currentMasterResponse); } catch (_) {}
     updateMemoryBadge();
 
   } catch (err) {
     console.error("JARVIS API Error:", err);
     hudContent.innerHTML = `
       <div style="padding: 20px; color: var(--gold-stark); font-family: var(--font-mono);">
-        <strong>[HATA RAPORU]:</strong> ${escapeHtml(err.message)}<br><br>
-        Sistem bağlantısı yedek kanallara yönlendirildi. Lütfen komutunuzu tekrarlayınız.
+        <strong>[HATA]:</strong> ${escapeHtml(err.name === 'AbortError' ? 'Yanıt süresi aşıldı.' : err.message)}<br><br>
+        Mesajın giriş alanına geri kondu. Tekrar deneyebilirsin.
       </div>
     `;
     coreStatusText.innerText = "UYARI: PROTOKOL GECİKMESİ";
     coreStatusText.style.color = "var(--gold-stark)";
     jarvisState = STATE_IDLE;
+    if (!promptInput.value.trim()) promptInput.value = prompt;
+  } finally {
+    clearTimeout(timer);
+    requestInFlight = false;
+    btnSend.disabled = false;
+    if (jarvisState === STATE_PROCESSING) jarvisState = STATE_IDLE;
   }
 }
 
