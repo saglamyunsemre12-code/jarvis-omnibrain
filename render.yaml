@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: jarvis-omnibrain
+    env: python
+    buildCommand: "echo 'No build required'"
+    startCommand: "python3 server.py"
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
