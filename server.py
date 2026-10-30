@@ -91,6 +91,10 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
             }
             self._send_json(status_data)
 
+        elif parsed.path == "/api/memory":
+            from memory.jarvis_memory import memory
+            self._send_json(memory.get_memory_stats())
+
         elif parsed.path == "/api/skills":
             self._send_json(get_all_indexed_skills())
 
@@ -126,6 +130,11 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
 
             result = process_prompt(prompt, mode=mode)
             self._send_json(result)
+
+        elif parsed.path == "/api/memory/clear":
+            from memory.jarvis_memory import memory
+            res = memory.clear_history()
+            self._send_json({"result": res, "status": "CLEARED"})
 
         elif parsed.path == "/api/higgsfield/generate":
             concept = req_data.get("concept", "Luxury hotel suite view")

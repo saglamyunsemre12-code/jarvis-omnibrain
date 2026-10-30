@@ -90,6 +90,21 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+// Memory Telemetry Badge Update
+async function updateMemoryBadge() {
+  try {
+    const res = await fetch("/api/memory");
+    if (res.ok) {
+      const data = await res.json();
+      const memTag = document.getElementById("hudMemoryTag");
+      if (memTag) {
+        memTag.innerHTML = `<span>🧠 BELLEK: ${data.total_turns} TUR (${data.learned_facts_count} BİLGİ)</span>`;
+      }
+    }
+  } catch (e) {}
+}
+updateMemoryBadge();
+
 // Audio Toggle
 btnAudioToggle.addEventListener("click", () => {
   isAudioEnabled = !isAudioEnabled;
@@ -267,13 +282,14 @@ async function handleSend() {
     // Reset tabs
     document.querySelectorAll(".spec-tab").forEach(b => b.classList.remove("active"));
     document.querySelector(".spec-tab[data-tab='master']").classList.add("active");
+    renderTabContent("master");
 
-    hudContent.innerHTML = formatMarkdown(currentMasterResponse);
     coreStatusText.innerText = "GÖREV TAMAMLANDI // KONSENSÜS SAĞLANDI";
     coreStatusText.style.color = "var(--cyan-primary)";
 
     // Speak response
     speakText(currentMasterResponse);
+    updateMemoryBadge();
 
   } catch (err) {
     console.error("JARVIS API Error:", err);

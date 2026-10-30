@@ -33,6 +33,9 @@
     </div>
 
     <div class="topbar-right">
+      <div class="hud-memory-tag" id="hudMemoryTag" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold-stark); border: 1px solid rgba(245,158,11,0.3); padding: 4px 8px; border-radius: 4px; display: flex; align-items: center; gap: 6px;">
+        <span>🧠 BELLEK: AKTİF</span>
+      </div>
       <div class="hud-clock" id="hudClock">MALIBU LAB: 04:20:00 UTC</div>
       <button class="hud-audio-btn" id="btnAudioToggle" title="Sesli Yanıtı Aç/Kapat">
         <span class="audio-wave-icon">🔊</span>
@@ -173,6 +176,9 @@
   <footer class="hud-command-area">
     <!-- Action Chips -->
     <div class="command-chips">
+      <button class="hud-chip" data-prompt="Hafızanda neler var? Beni ve projelerimi ne kadar tanıyorsun?">
+        <span class="chip-icon">🧠</span> Kalıcı Hafıza (MemGPT)
+      </button>
       <button class="hud-chip" data-prompt="Higgsfield için sinematik lüks video istemi ve kamera açısı üret.">
         <span class="chip-icon">🎬</span> 9:16 Video Prompt (Higgsfield)
       </button>
@@ -182,8 +188,8 @@
       <button class="hud-chip" data-prompt="GTA VI tarzı gerçek hayat aksiyonlu viral video kurgusu ve senaryosu yaz.">
         <span class="chip-icon">🚗</span> GTA VI Viral Video Kurgusu
       </button>
-      <button class="hud-chip" data-prompt="Remotion için React tabanlı kayan başlık animasyonu kodu yaz.">
-        <span class="chip-icon">⚛️</span> React Video Bileşeni (Remotion)
+      <button class="hud-chip" data-prompt="Güneş pillerinin verimliliğini artırmanın en yenilikçi yolu nedir?">
+        <span class="chip-icon">🔬</span> Güneş Pili & Bilimsel Analiz
       </button>
       <button class="hud-chip" data-prompt="GitHub depolarımı ve hesap durumumu kontrol et.">
         <span class="chip-icon">🐙</span> GitHub Durumu (@saglamyunsemre12-code)
