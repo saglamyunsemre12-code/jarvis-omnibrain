@@ -90,6 +90,14 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
             from memory.jarvis_memory import memory
             self._send_json(memory.get_memory_stats())
 
+        elif parsed.path == "/api/hub/memory":
+            hub_path = "/Users/emre/Desktop/ORTAK_AI_HAFIZASI.md"
+            content = "No master memory file found."
+            if os.path.exists(hub_path):
+                with open(hub_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+            self._send_json({"status": "OK", "master_memory": content})
+
         elif parsed.path == "/api/skills":
             self._send_json(get_all_indexed_skills())
 
