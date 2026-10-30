@@ -588,6 +588,20 @@ body.stark-hud-theme {
   backdrop-filter: blur(8px);
 }
 
+.hud-chip.chip-highlight {
+  border-color: var(--gold-stark);
+  background: rgba(245, 158, 11, 0.12);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 0 14px var(--gold-glow);
+}
+
+.hud-chip.chip-highlight:hover {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #ffd166;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+}
+
 .hud-chip:hover {
   background: rgba(0, 240, 255, 0.12);
   border-color: var(--cyan-primary);

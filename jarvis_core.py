@@ -12,6 +12,7 @@ import re
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from memory.jarvis_memory import memory
+from engines.subagents_swarm import swarm
 from engines.nim_engine import query_nim
 from engines.production_engine import synthesize_deep_domain_deliverable
 from engines.system_engine import get_system_metrics, get_safari_tabs, set_volume, open_url_in_safari, execute_shell
@@ -76,6 +77,47 @@ def process_prompt(prompt, mode="COUNCIL"):
         res = handle_system_command(clean_p)
         res["execution_time"] = round(time.time() - start_time, 2)
         memory.add_interaction(clean_p, res["master_response"], res["execution_time"])
+        return res
+
+    # 1.5 Autonomous Subagents Swarm & Executive Rundown (Burak Çakır & Ruflo Architecture)
+    if any(k in lower_p for k in ["brifing", "durum nedir", "rapor ver", "özet geç", "neler oluyor", "haftalık durum", "rundown", "executive briefing", "durum raporu", "şirket durumu", "mrr", "durum"]):
+        rundown = swarm.generate_executive_rundown()
+        elapsed = round(time.time() - start_time, 2)
+        rundown["execution_time"] = elapsed
+        speak_async(rundown["spoken_text"], lang="tr")
+        memory.add_interaction(clean_p, rundown["master_response"], elapsed)
+        return rundown
+
+    if any(k in lower_p for k in ["günde 3 video", "3 video", "sarah", "buffer", "video planı"]):
+        res = swarm.run_agent_task("sarah", clean_p)
+        elapsed = round(time.time() - start_time, 2)
+        res["execution_time"] = elapsed
+        speak_async(res["spoken_text"], lang="tr")
+        memory.add_interaction(clean_p, res["master_response"], elapsed)
+        return res
+
+    if any(k in lower_p for k in ["tom", "geliştirici ajan", "dev agent"]):
+        res = swarm.run_agent_task("tom", clean_p)
+        elapsed = round(time.time() - start_time, 2)
+        res["execution_time"] = elapsed
+        speak_async(res["spoken_text"], lang="tr")
+        memory.add_interaction(clean_p, res["master_response"], elapsed)
+        return res
+
+    if any(k in lower_p for k in ["leo", "destek mail", "müşteri mail", "gelen mail", "destek talebi"]):
+        res = swarm.run_agent_task("leo", clean_p)
+        elapsed = round(time.time() - start_time, 2)
+        res["execution_time"] = elapsed
+        speak_async(res["spoken_text"], lang="tr")
+        memory.add_interaction(clean_p, res["master_response"], elapsed)
+        return res
+
+    if any(k in lower_p for k in ["alex", "roas", "reklam harcaması", "finans raporu"]):
+        res = swarm.run_agent_task("alex", clean_p)
+        elapsed = round(time.time() - start_time, 2)
+        res["execution_time"] = elapsed
+        speak_async(res["spoken_text"], lang="tr")
+        memory.add_interaction(clean_p, res["master_response"], elapsed)
         return res
 
     # 2. Explicit Memory Management & Queries

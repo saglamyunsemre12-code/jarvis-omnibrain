@@ -288,7 +288,7 @@ async function handleSend() {
     coreStatusText.style.color = "var(--cyan-primary)";
 
     // Speak response
-    speakText(currentMasterResponse);
+    speakText(data.spoken_text || currentMasterResponse);
     updateMemoryBadge();
 
   } catch (err) {

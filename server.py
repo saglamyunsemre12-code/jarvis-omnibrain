@@ -73,6 +73,10 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
             result = process_prompt(prompt, mode=mode)
             self._send_json(result)
 
+        elif parsed.path == "/api/swarm/rundown":
+            from engines.subagents_swarm import swarm
+            self._send_json(swarm.generate_executive_rundown())
+
         elif parsed.path == "/api/status":
             status_data = {
                 "system": get_system_metrics(),
