@@ -1,0 +1,118 @@
+{
+  "status": "active",
+  "cloud_host": "Render / GitHub Actions Hybrid",
+  "updated_at": "2026-11-02T01:18:25.388654Z",
+  "currency": "TRY",
+  "active_proposals_count": 18,
+  "total_pipeline_value_tl": 38200,
+  "proposals": [
+    {
+      "client": "volkanergenc",
+      "title": "Senior DevSecOps & Altyapı Güvenliği",
+      "amount": 5000,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "togankutereren",
+      "title": "ABD Üniversite Futbol Platformu",
+      "amount": 5000,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "mehmetziyayildi",
+      "title": "Gayrimenkul Eğitim Platformu + 90 Reels",
+      "amount": 4750,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "anyoncris",
+      "title": "Hoppa POS & Webhook + AI Core",
+      "amount": 3500,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "miraykurum",
+      "title": "Gayrimenkul Web Sitesi Yapay Zeka Entegrasyonu",
+      "amount": 3000,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "miraykurum",
+      "title": "Gayrimenkul Firması İçin Özel Web Sitesi",
+      "amount": 3000,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "ercankuraner",
+      "title": "15 Sayfalık Drone Motor İmalat Şirketi Sitesi",
+      "amount": 3000,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "sefaozturk1",
+      "title": "Ahde Vefa Derneği Resmi Kurumsal Logo",
+      "amount": 2000,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "miraykurum",
+      "title": "Gayrimenkul Şirketi Güvenli Ödeme Altyapısı",
+      "amount": 1500,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "sondex",
+      "title": "Kurumsal Emlak Ofisi Web Sitesi & Logo",
+      "amount": 1000,
+      "status": "Ödeme Bekleniyor"
+    },
+    {
+      "client": "umutkayracan",
+      "title": "Gurme Atlas Platform Logosu (Minimalist)",
+      "amount": 700,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "alprakgl",
+      "title": "Oyun Serüveni Kış Temalı Logo & Tipografi",
+      "amount": 700,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "alprakgl",
+      "title": "Oyun Serüveni Limited Edition Merch Tişört",
+      "amount": 700,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "omeronbasi",
+      "title": "PHP & WP Teknik SEO, Core Web Vitals Hız",
+      "amount": 600,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "omeronbasi",
+      "title": "4 Siteden Otomatik E-Ticaret Fiyat ve Stok",
+      "amount": 350,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "melikepolat2",
+      "title": "Web Sitesi Görsel Optimizasyonu & İçerik",
+      "amount": 300,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "miraykurum",
+      "title": "Kişisel Portfolyo & CV Sitesi",
+      "amount": 100,
+      "status": "Teklif İletildi"
+    },
+    {
+      "client": "ilkerdizmen",
+      "title": "Canlı Müzik & Etkinlik Mekanı Logo Tasarımı",
+      "amount": 3000,
+      "status": "Teklif İletildi"
+    }
+  ]
+}

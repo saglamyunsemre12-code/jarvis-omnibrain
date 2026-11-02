@@ -23,6 +23,7 @@ from engines.skills_indexer import get_all_indexed_skills
 from engines.hermes_tool_forge import forge_tool, list_forged_tools, execute_forged_tool
 from engines.crawler_engine import fetch_and_clean_markdown
 from engines.retention_scorer import analyze_retention
+from engines.cloud_revenue_engine import get_live_pipeline, handle_rapidapi_price_track
 
 PORT = int(os.environ.get("PORT", 8888))
 HOST = "0.0.0.0"
@@ -109,6 +110,15 @@ class JarvisHandler(http.server.SimpleHTTPRequestHandler):
 
         elif parsed.path == "/api/tabs":
             self._send_json({"tabs": get_safari_tabs()})
+
+        elif parsed.path == "/api/revenue/pipeline":
+            self._send_json(get_live_pipeline())
+
+        elif parsed.path == "/api/rapidapi/track":
+            query_params = urllib.parse.parse_qs(parsed.query)
+            target_url = query_params.get("url", ["https://example.com/product"])[0]
+            sku = query_params.get("sku", ["PROD-DEFAULT"])[0]
+            self._send_json(handle_rapidapi_price_track(target_url, sku))
 
         else:
             super().do_GET()
